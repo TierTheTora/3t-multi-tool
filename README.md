@@ -9,7 +9,7 @@
 - [Program.cs](./3tTool/Program.cs): Main source code file
 - [ni.bat](./3tTool/ni.bat): Batch script for displaying detailed Wi-Fi information using netsh wlan
 - [App.config](./3tTool/App.config): Config file for runtime settings for the application
-- [AssemblyInfo.cs](./3tTool/AssemblyInfo.cs): Metadata about the assembly and more
+- [AssemblyInfo.cs](./3tTool/Properties/AssemblyInfo.cs): Metadata about the assembly and more
 - [3tTool.sln](./3tTool.sln): Solution file for Visual Studio
 
 ## License
