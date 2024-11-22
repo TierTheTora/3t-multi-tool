@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3tTool", "3tTool\3tTool.csproj", "{2D819DF9-15E7-4F3D-849B-B69A7355B2C1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D819DF9-15E7-4F3D-849B-B69A7355B2C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D819DF9-15E7-4F3D-849B-B69A7355B2C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D819DF9-15E7-4F3D-849B-B69A7355B2C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D819DF9-15E7-4F3D-849B-B69A7355B2C1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C40CD4C-E1BC-49C8-978A-D817A1C2DB53}
+	EndGlobalSection
+EndGlobal
