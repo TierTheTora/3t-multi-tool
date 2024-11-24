@@ -97,7 +97,7 @@ namespace _3tTool
 
                 File.Delete(tempPath);
             }
-            catch (Exception ex) {}
+            catch (Exception ex) { }
         }
         static async Task sm()
         {
@@ -186,7 +186,7 @@ namespace _3tTool
                 Console.ForegroundColor = ConsoleColor.Red;
 
             Console.WriteLine("\tSystem Uptime:    " + $"{uptimeSpan.Days} days, {uptimeSpan.Hours} hours, {uptimeSpan.Minutes} minutes, {uptimeSpan.Seconds} seconds");
-            
+
             Console.ResetColor();
 
             if ((Environment.WorkingSet / 1048576) < 30)
@@ -194,7 +194,7 @@ namespace _3tTool
             else
                 Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\tWorkingSet:       " + Environment.WorkingSet + " Bytes");
-            
+
             Console.ResetColor();
             Console.WriteLine("\tProcessorCount:   " + Environment.ProcessorCount);
 
@@ -209,7 +209,7 @@ namespace _3tTool
             else
                 Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\tDisk Read Speed:  " + diskReadCounter.NextValue() + " Bytes/sec");
-            
+
             Console.ResetColor();
 
             if (diskReadCounter.NextValue() / 1048576 >= 500)

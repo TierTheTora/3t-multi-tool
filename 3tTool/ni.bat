@@ -22,6 +22,7 @@ for /f "tokens=2* delims=:" %%i in ('netsh wlan show interface ^| find "Receive 
 for /f "tokens=2* delims=:" %%i in ('netsh wlan show interface ^| find "Transmit rate"') do set tra=%%i
 
 for /f "tokens=2* delims=:" %%i in ('netsh wlan show interface ^| find "Signal"') do set signal=%%i
+for /f "tokens=4* delims==" %%i in ('ping 127.0.0.1 ^| find "Average"') do set ping=%%i
 
 cls
 
@@ -32,5 +33,6 @@ echo BAND:          %band%
 echo RECEIVE RATE:  %rec% (Mbps)
 echo TRANSMIT RATE: %tra% (Mbps)
 echo SIGNAL:        %signal%
+echo PING:          %ping%
 
 goto upd
