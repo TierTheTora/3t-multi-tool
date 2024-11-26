@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net;
+using System;
 using System.Net.NetworkInformation;
 using System.Diagnostics;
 using System.IO;
@@ -7,8 +6,6 @@ using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using System.Security.Policy;
-using System.Text.RegularExpressions;
 
 namespace _3tTool
 {
