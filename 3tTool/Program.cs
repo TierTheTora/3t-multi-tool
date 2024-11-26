@@ -35,6 +35,7 @@ namespace _3tTool
                 Console.WriteLine("2 - Send message via webhook");
                 Console.WriteLine("3 - System info");
                 Console.WriteLine("4 - System diagnostics");
+                Console.WriteLine("5 - location from IP");
 
                 Console.Write("  > ");
 
@@ -57,6 +58,9 @@ namespace _3tTool
                         break;
                     case '4':
                         await sd();
+                        break;
+                    case '5':
+                        await gp();
                         break;
                 }
             }
@@ -238,6 +242,37 @@ namespace _3tTool
             Console.Write("Press any key to continue . . . ");
 
             Console.ReadKey();
+        }
+        static async Task gp()
+        {
+            Console.Title = "3tTool - Location from IP";
+            Console.Clear();
+            Console.WriteLine("(\\0 to exit)\n");
+            Console.Write("IP > ");
+            string ip = Console.ReadLine();
+            if (ip != "\\0")
+            {
+                string url = "http://ip-api.com/xml/" + ip;
+
+                using (HttpClient client = new HttpClient())
+                {
+                    try
+                    {
+                        var response = await client.GetStringAsync(url);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(response);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(ex.Message);
+                    }
+                    Console.ResetColor();
+                    Console.Write("\nPress any key to continue . . . ");
+                    Console.ReadKey();
+                    await gp();
+                }
+            }
         }
     }
 }
