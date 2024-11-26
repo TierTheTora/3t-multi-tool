@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Net;
+using System.Net.NetworkInformation;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Policy;
+using System.Text.RegularExpressions;
 
 namespace _3tTool
 {
@@ -35,7 +39,8 @@ namespace _3tTool
                 Console.WriteLine("2 - Send message via webhook");
                 Console.WriteLine("3 - System info");
                 Console.WriteLine("4 - System diagnostics");
-                Console.WriteLine("5 - location from IP");
+                Console.WriteLine("5 - Get location from IPv4");
+                Console.WriteLine("6 - Get own IPv4");
 
                 Console.Write("  > ");
 
@@ -61,6 +66,9 @@ namespace _3tTool
                         break;
                     case '5':
                         await gp();
+                        break;
+                    case '6':
+                        await op();
                         break;
                 }
             }
@@ -245,7 +253,7 @@ namespace _3tTool
         }
         static async Task gp()
         {
-            Console.Title = "3tTool - Location from IP";
+            Console.Title = "3tTool - Get location from IPv4";
             Console.Clear();
             Console.WriteLine("(\\0 to exit)\n");
             Console.Write("IP > ");
@@ -273,6 +281,47 @@ namespace _3tTool
                     await gp();
                 }
             }
+        }
+        static async Task op()
+        {
+            Console.Clear();
+            Console.Title = "3tTool - Get own IPv4";
+            NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+            bool exec = true;
+            int i = 1;
+            foreach (var networkInterface in networkInterfaces)
+            {
+                if (networkInterface.OperationalStatus == OperationalStatus.Up)
+                {
+                    IPInterfaceProperties ipProperties = networkInterface.GetIPProperties();
+                    foreach (var unicastAddress in ipProperties.UnicastAddresses)
+                    {
+                        if (unicastAddress.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                        {
+                            if (i == 1)
+                                Console.WriteLine("\tPrivate IPv4 Address: " + unicastAddress.Address.ToString());
+                            i++;
+                            using (HttpClient client = new HttpClient())
+                            {
+                                var ip = await client.GetStringAsync("http://ip-api.com/json/\\");
+                                string[] newIp = ip.Split('"');
+                                for (int j = 0; j < newIp.Length; j++)
+                                {
+                                    if (newIp[j] == "query")
+                                    {
+                                        if (exec)
+                                            Console.Write($"\tPublic IPv4: {newIp[j + 2]}");
+                                            exec = false;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Console.Write("\nPress any key to continue . . . ");
+            Console.ReadKey();
         }
     }
 }
